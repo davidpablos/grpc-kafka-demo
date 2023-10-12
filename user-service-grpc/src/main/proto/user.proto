@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.dpablos.grpckafkademo.user.model";
+option java_outer_classname = "UserProto";
+
+service UsersService {
+  rpc AddUser(User) returns (User) {}
+}
+
+message User {
+  int64 id = 1;
+  string email = 2;
+}

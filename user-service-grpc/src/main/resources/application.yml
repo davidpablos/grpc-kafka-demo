@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: ${MS_SHOW_SQL:false}
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: ${MS_DB_URL:jdbc:postgresql://localhost:5432/users}
+    username: ${MS_DB_USERNAME:users}
+    password: ${MS_DB_PASSWORD:users}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baselineOnMigrate: true
+    default-schema: users

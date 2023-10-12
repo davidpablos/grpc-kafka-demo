@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+
+  db-services:
+    container_name: db-services
+    image: "postgres:12"
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: users
+      POSTGRES_PASSWORD: users
+    volumes:
+      - ./data/services/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - acciona
+
+  grpcui:
+    image: "wongnai/grpcui:master"
+    container_name: grpcurl
+    ports:
+      - "8091:8080"
+    environment:
+      GRPCUI_SERVER: 172.17.0.1:9090
+
+networks:
+  acciona:
+    name: acciona
+    driver: bridge
