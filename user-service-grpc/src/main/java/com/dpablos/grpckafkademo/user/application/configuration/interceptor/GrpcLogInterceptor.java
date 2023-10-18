@@ -24,4 +24,5 @@ public class GrpcLogInterceptor implements ServerInterceptor {
 
 		return next.startCall(call, headers);
 	}
+
 }

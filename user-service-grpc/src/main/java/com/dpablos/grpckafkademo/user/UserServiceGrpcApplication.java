@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
     "com.dpablos.grpckafkademo.user.application.bean",
-    "com.dpablos.grpckafkademo.user.application.configuration.handler",
+    "com.dpablos.grpckafkademo.user.application.configuration",
 })
 public class UserServiceGrpcApplication {
 
