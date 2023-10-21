@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class TopicProperties {
 
-	@NotEmpty(message = "Toppic property cannot be empty")
+	@NotEmpty(message = "Topic property cannot be empty")
 	private String topic;
 
 	@NotNull(message = "Partitions property cannot be empty")

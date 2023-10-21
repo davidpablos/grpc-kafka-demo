@@ -1,4 +1,4 @@
-# user-service
+# userMessage-service
 
 mvn clean package
 

@@ -24,7 +24,7 @@ public class UserService extends UsersServiceGrpc.UsersServiceImplBase {
 		responseObserver.onNext(UserProto.User.newBuilder().setId(user.getId()).setEmail(user.getEmail()).build());
 		responseObserver.onCompleted();
 
-		this.messageService.publish(this.usersTopic, user.toString());
+		this.messageService.publish(this.usersTopic, user);
 	}
 
 }

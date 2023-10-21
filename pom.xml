@@ -45,5 +45,6 @@
 
     <modules>
         <module>user-service-grpc</module>
+        <module>mail-service</module>
     </modules>
 </project>

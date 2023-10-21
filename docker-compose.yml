@@ -74,6 +74,15 @@ services:
     environment:
       GRPCUI_SERVER: 172.17.0.1:9090
 
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - gprckafka
+
 networks:
   gprckafka:
     name: gprckafka

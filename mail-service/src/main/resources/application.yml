@@ -1,0 +1,23 @@
+server:
+  port: 8086
+
+spring:
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+mail:
+  from: mail-service@local.com
+  subject: User registration
+  text: "%s, thank you for registering!"
+
+messaging:
+  userCreated:
+    topic: users-topic
+    groupId: users-consumer-group
