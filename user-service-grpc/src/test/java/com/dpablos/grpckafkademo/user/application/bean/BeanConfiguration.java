@@ -1,11 +1,11 @@
 package com.dpablos.grpckafkademo.user.application.bean;
 
 import com.dpablos.grpckafkademo.user.utils.TestDatabase;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@Configuration
+@TestConfiguration
 public class BeanConfiguration {
 
 	@Bean

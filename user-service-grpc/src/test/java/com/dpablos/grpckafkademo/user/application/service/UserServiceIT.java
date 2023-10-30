@@ -2,30 +2,20 @@ package com.dpablos.grpckafkademo.user.application.service;
 
 import com.dpablos.grpckafkademo.user.model.UserProto;
 import com.dpablos.grpckafkademo.user.model.UsersServiceGrpc;
+import com.dpablos.grpckafkademo.user.test.AbstractIntegrationTest;
 import com.dpablos.grpckafkademo.user.utils.TestDatabase;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
-import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@SpringBootTest(properties = {
-	"grpc.server.inProcessName=test",
-	"grpc.server.port=-1",
-	"grpc.client.inProcess.address=in-process:test"
-})
-@DirtiesContext
-@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
-class UserServiceIT {
+
+class UserServiceIT extends AbstractIntegrationTest {
 
 	private static final String SCHEMA = "users";
 
