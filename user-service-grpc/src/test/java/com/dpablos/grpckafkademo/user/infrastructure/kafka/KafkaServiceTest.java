@@ -88,7 +88,7 @@ class KafkaServiceTest {
 	}
 
 	@Test
-	void when_message_is_published_successfully_then_on_success_is_excecuted() {
+	void when_message_is_published_successfully_then_on_success_is_executed() {
 		@SuppressWarnings("unchecked")
 		ListenableFuture<SendResult<String, String>> future = mock(ListenableFuture.class);
 
