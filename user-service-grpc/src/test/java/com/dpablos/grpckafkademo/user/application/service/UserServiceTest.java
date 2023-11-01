@@ -32,7 +32,7 @@ class UserServiceTest {
 	private MessageService messageService;
 
 	@Mock
-	private StreamObserver<UserProto.User> responseObserver;
+	private StreamObserver<UserProto.UserCreateResponse> responseObserver;
 
 	@BeforeEach
 	void setUp() {
@@ -41,7 +41,7 @@ class UserServiceTest {
 
 	@Test
 	void when_add_user_is_executed_then_user_is_added() {
-		UserProto.User request = UserProto.User.newBuilder()
+		UserProto.UserCreateRequest request = UserProto.UserCreateRequest.newBuilder()
 			.setEmail("::email::")
 			.build();
 
@@ -55,7 +55,7 @@ class UserServiceTest {
 
 	@Test
 	void when_user_is_added_then_grpc_petition_is_completed() {
-		UserProto.User request = UserProto.User.newBuilder()
+		UserProto.UserCreateRequest request = UserProto.UserCreateRequest.newBuilder()
 			.setEmail("::email::")
 			.build();
 
@@ -64,9 +64,8 @@ class UserServiceTest {
 
 		this.service.addUser(request, this.responseObserver);
 
-		verify(this.responseObserver).onNext(UserProto.User.newBuilder()
-			.setId(user.getId())
-			.setEmail(user.getEmail())
+		verify(this.responseObserver).onNext(UserProto.UserCreateResponse.newBuilder()
+			.setUser(UserProto.User.newBuilder().setId(user.getId()).setEmail(user.getEmail()))
 			.build());
 
 		verify(this.responseObserver).onCompleted();
@@ -74,7 +73,7 @@ class UserServiceTest {
 
 	@Test
 	void when_grpc_petition_is_completed_then_message_is_published() {
-		UserProto.User request = UserProto.User.newBuilder()
+		UserProto.UserCreateRequest request = UserProto.UserCreateRequest.newBuilder()
 			.setEmail("::email::")
 			.build();
 		when(this.userRepository.add(any(String.class))).thenReturn(new UserBuilder().build(3));
@@ -86,7 +85,7 @@ class UserServiceTest {
 
 	@Test
 	void when_message_cannot_be_published_then_exception_is_thrown() {
-		UserProto.User request = UserProto.User.newBuilder()
+		UserProto.UserCreateRequest request = UserProto.UserCreateRequest.newBuilder()
 			.setEmail("::email::")
 			.build();
 		when(this.userRepository.add(any(String.class))).thenReturn(new UserBuilder().build(3));

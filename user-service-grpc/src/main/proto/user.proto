@@ -6,10 +6,18 @@ option java_package = "com.dpablos.grpckafkademo.user.model";
 option java_outer_classname = "UserProto";
 
 service UsersService {
-  rpc AddUser(User) returns (User) {}
+  rpc AddUser(UserCreateRequest) returns (UserCreateResponse) {}
 }
 
 message User {
   int64 id = 1;
   string email = 2;
+}
+
+message UserCreateRequest {
+  string email = 2;
+}
+
+message UserCreateResponse {
+  User user = 1;
 }

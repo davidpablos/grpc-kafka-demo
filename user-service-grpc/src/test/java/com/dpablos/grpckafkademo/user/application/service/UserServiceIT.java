@@ -38,14 +38,19 @@ class UserServiceIT extends AbstractIntegrationTest {
 
 	@Test
 	void when_user_is_added_then_created_user_is_returned() {
-		UserProto.User user = UserProto.User.newBuilder()
+		UserProto.UserCreateRequest user = UserProto.UserCreateRequest.newBuilder()
 			.setEmail("test@email.com")
 			.build();
 
-		user = this.service.addUser(user);
+		UserProto.UserCreateResponse userCreateResponse = this.service.addUser(
+			UserProto.UserCreateRequest.newBuilder()
+				.setEmail("test@email.com")
+				.build()
+		);
 
-		assertNotNull(user);
-		assertEquals(1, user.getId());
+		assertNotNull(userCreateResponse);
+		assertNotNull(userCreateResponse.getUser());
+		assertEquals(1, userCreateResponse.getUser().getId());
 		assertEquals("test@email.com", user.getEmail());
 	}
 

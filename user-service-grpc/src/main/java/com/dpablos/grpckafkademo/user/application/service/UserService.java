@@ -19,9 +19,14 @@ public class UserService extends UsersServiceGrpc.UsersServiceImplBase {
 	private final String usersTopic;
 
 	@Override
-	public void addUser(UserProto.User request, StreamObserver<UserProto.User> responseObserver) {
+	public void addUser(
+		UserProto.UserCreateRequest request,
+		StreamObserver<UserProto.UserCreateResponse> responseObserver
+	) {
 		User user = this.userRepository.add(request.getEmail());
-		responseObserver.onNext(UserProto.User.newBuilder().setId(user.getId()).setEmail(user.getEmail()).build());
+		responseObserver.onNext(UserProto.UserCreateResponse.newBuilder()
+			.setUser(UserProto.User.newBuilder().setId(user.getId()).setEmail(user.getEmail()).build())
+			.build());
 		responseObserver.onCompleted();
 
 		this.messageService.publish(this.usersTopic, user);
